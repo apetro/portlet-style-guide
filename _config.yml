@@ -1,0 +1,6 @@
+name:          portlet-style-guide
+description:   Guidelines for developing portlets
+url:           http://apetro.github.io/portlet-style-guide
+markdown:      rdiscount
+permalink:     pretty
+pygments:      true

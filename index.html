@@ -1,0 +1,616 @@
+---
+layout: default
+---
+
+
+<div class="heading" id="toc">
+  <h2>Meta</h2>
+</div>
+
+<div class="section" id="scope">
+  <div class="col">
+    <h3>Proof of concept</h3>
+    <p>This is just a proof of concept.  This is not an adopted style guide.</p>
+  </div>
+  <div class="col">
+    <h3>Next steps</h3>
+    <p>Learn from the proof of concept</p>
+    <ul>
+      <li>How do we like this format?</li>
+      <li>How do we feel about the scope?</li>
+      <li>Broadly is this going in a good direction?</li>
+    </ul>
+
+    <h3>Launching</h3>
+    <p>If we decide to go forward with this:</p>
+    <ul>
+      <li>The structure and format <strong>only</strong> would be slurped into a DoIT organization public repo.</li>
+      <li>All of the actual content would be left behind initially.</li>
+      <li>Whatever's good about the example content here would be proposed in via pull requests, peer reviewed, and merged to the style guide only with consensus.</li>
+    </ul>
+
+    <h3>Nonthreatening</h3>
+    <p>In short, while it's been great fun to take a stab at imagining what goes in this guide, and I think it is helpful to see some real-ish examples to prompt thinking about whether this tool works and what the scope ought to be, this isn't a tool for sneaking in style guidance for which there isn't consensus.  That wouldn't be "kind".</p>
+
+  </div>
+</div>
+
+<div class="heading" id="toc">
+  <h2>Table of contents</h2>
+</div>
+
+<div class="section toc">
+
+  <div class="col">
+    <h3><a href="#portlet">Being a Portlet</a></h3>
+    <ul>
+      <li><a href="#portlet-existential">Be a portlet</a></li>
+      <li><a href="#portlet-normal-window-state">Normal window state</a></li>
+      <li><a href="#portlet-max-window-state">Maximized window state</a></li>
+      <li><a href="#portlet-min-window-state">Minimized window state</a></li>
+      <li><a href="#portlet-help-mode">Help mode</a></li>
+      <li><a href="#portlet-edit-mode">Edit mode</a></li>
+      <li><a href="#portlet-config-mode">Config mode</a></li>
+      <li><a href="#portlet-render-vs-action">Render vs Action</a></li>
+      <li><a href="#portlet-caching">Markup caching via Portlet API</a></li>
+    </ul>
+  </div>
+
+<div class="col">
+  <h3><a href="#uportlet">Being a Portlet in uPortal</a></h3>
+  <ul>
+    <li><a href="#uportlet-uportal-styles">Don't use styles that don't belong to you</a></li>
+    <li><a href="#uportlet-resource-server">Use the Resource Serving Webapp</a></li>
+    <li><a href="#uportlet-entity-files">Entity files</a></li>
+  </ul>
+</div>
+
+</div>
+
+<div class="section toc">
+
+  <div class="col">
+    <h3><a href="#markup">Markup and CSS</a></h3>
+    <ul>
+      <li><a href="#markup-JSR-286">JSR-286 CSS</a></li>
+      <li><a href="#markup-bootstrap">Bootstrap CSS</a></li>
+      <li><a href="#markup-imports">Providing your styles</a></li>
+
+    </ul>
+  </div>
+
+<div class="col">
+  <h3><a href="#javascript">JavaScript</a></h3>
+  <ul>
+    <li>TODO</li>
+
+  </ul>
+</div>
+
+</div>
+
+<div class="section toc">
+
+  <div class="col">
+    <h3><a href="#ui">UI conventions</a></h3>
+    <ul>
+      <li><a href="#ui-return">Returning from a drill-down</a></li>
+      <li><a href="#ui-inline-help">Inline help</a></li>
+      <li><a href="#ui-something-happened">Something happened!</a></li>
+      <li><a href="#ui-required-fields">Optional and required form fields</a></li>
+      <li><a href="#ui-data-table">Data tables</a></li>
+      <li><a href="#ui-carousel-alternative">Don't use carousels</a></li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="section toc">
+
+  <div class="col">
+    <h3><a href="#voice">Voice</a></h3>
+    <ul>
+      <li><a href="#voice-overview">Voice overview</a></li>
+      <li><a href="#voice-active">Active voice</a></li>
+      <li><a href="#voice-spirited">Spirited</a></li>
+      <li><a href="#voice-glossary">Glossary</a></li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="section toc">
+
+<div class="col">
+  <h3><a href="#product">Being a portlet product</a></h4>
+  <ul>
+    <li><a href="#product-or-not">Product or one-off?</a></li>
+    <li><a href="#product-overlayability">Maven overlayability</a></li>
+  </ul>
+</div>
+
+
+
+</div> <!-- end toc -->
+
+
+
+
+
+
+
+<div class="section" id="scope">
+  <div class="col">
+    <h2>Scope</h2>
+    <p>This is the portlet style guide.</p>
+  </div>
+  <div class="col">
+    <h3>In-scope</h3>
+    <p>Examples of topics in-scope (but not necessarily treated yet in this guide):</p>
+    <ul>
+      <li>Within-portlet navigation</li>
+      <li>Logging</li>
+    </ul>
+
+    <h3>Out-of-scope</h3>
+    <p>Examples of topics out-of-scope:</p>
+    <ul>
+      <li>Considerations unique to writing portlets that run as part of the portal web application / portlet application itself (that belongs in the portal-style-guide).</li>
+      <li>Considerations in writing portal framework code (that belongs in the portal-style-guide).</li>
+      <li>Considerations generic to Java web applications, concerns that aren't particularly portlet flavored.</li>
+      <li>Considerations generic to open source software projects, like effectively applying appropriate licensing.</li>
+      <li>Considerations generic to software development, like using Semantic Versioning and providing good documentation.</li>
+    </ul>
+
+    <h3>See also</h3>
+    <p>Other style guides that might be relevant:</p>
+    <ul>
+      <li><a href="http://www.uc.wisc.edu/styleguide/">University of Wisconsin Communications Editorial Style Guide</a></li>
+      <li><a href="http://www.uc.wisc.edu/brand/">University of Wisconsin Brand and Visual Identity Guidelines</a>, especially the <a href="http://www.uc.wisc.edu/brand/web/">guidelines related to the web</a></li>
+      <li><a href="http://devblog.uc.wisc.edu/blog/introducing-uw-devblog/">UW DevBlog</a></li>
+      <li><a href="http://google-styleguide.googlecode.com/svn/trunk/htmlcssguide.xml">Google HTML/CSS Style Guide</a></li>
+      <li><a href="http://google-styleguide.googlecode.com/svn/trunk/javascriptguide.xml">Google JavaScript Style Guide</a></li>
+      <li><a href="http://codeguide.co/">Code Guide</a> (CSS and JavaScript)</li>
+      <li><a href="http://google-styleguide.googlecode.com/svn/trunk/javaguide.html">Google Java Style</a> guide</li>
+      <li>Oracle's <a href="http://www.oracle.com/technetwork/java/codeconv-138413.html">Code Conventions for the Java Language</a></li>
+      <li><a href="http://google-styleguide.googlecode.com/svn/trunk/xmlstyle.html">Google XML Document Format Style Guide</a></li>
+      <li><a href="https://wiki.jasig.org/display/UPC/User+Interface">uPortal and portlet user interface guidelines</a></li>
+      <li><a href="https://wiki.jasig.org/display/UDM/Portlet+Development">uPortal Developer's Manual on Portlet Development</a></li>
+    </ul>
+
+  </div>
+</div>
+
+
+
+<div class="section" id="golden-rule">
+  <div class="col">
+    <h2>Be kind</h2>
+    <p>Be kind to your users.  Be kind to your fellow developers.  Be especially kind to those who especially struggle, who struggle to understand your portlet, who struggle to navigate the portal, who struggle to understand, support, and build upon your work.  The purpose of a portlet development guide is to guide development towards processes, products, and experiences that are more kind.</p>
+    <p>A kind portlet is a usable, accessible, adoptable, supportable, maintainable, loved portlet.</p>
+    <p>Modifying and writing portlets is a tiny little opportunity to be kind.  Certainly nothing like the most important such opportunities you will enjoy, but when life hands you an opportunity to be kind, take it.</p>
+    <p>Take care to be kind when applying the style guide to others' work.  The guide is not intended as a blunt instrument.  Portlet development, like much of life, requires poise and charm.</p>
+  </div>
+  <div class="col">
+    <blockquote>
+      <p>Life's most persistent and urgent question is, &quot;What are you doing for others?&quot;</p>
+    </blockquote>
+    <p>- Martin Luther King, Jr.</p>
+  </div>
+</div>
+
+
+<div class="heading">
+  <h2>Be Kind to the Portal</h2>
+</div>
+
+<div class="heading" id="portlet">
+  <h3>Being a Portlet</h3>
+</div>
+
+<div class="section" id="portlet-existential">
+  <div class="col">
+    <h3>Be a portlet</h3>
+    <p>Portlets are little web applications delivered through a portal.  If your application fits this form factor, great.  If you have a bigger application but it can usefully have a presence in the portal via a portlet, great.  Not all functionality ought to be delivered through the portal, only that functionality that the University can best deliver in this way and that University constituents can best engage with in this way.</p>
+  </div>
+  <div class="col">
+    <p>Examples of portlet ideas</p>
+    <ul>
+      <li>Indicators</li>
+      <li>Actionable notifications</li>
+      <li>Self-service components</li>
+      <li>What's new</li>
+      <li>Contextualized single sign-on links into bigger applications</li>
+    </ul>
+    <p>Ideas that might work better not as a portlet</p>
+    <ul>
+      <li>Rich interactive applications with significant client-side components</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section" id="portlet-normal-window-state">
+  <div class="col">
+    <h3>Normal window state</h3>
+    <p>Provide a dashboard-suitable experience in NORMAL window state.</p>
+  </div>
+  <div class="col">
+    <img src="http://placehold.it/400x200&text=Screenshot+of+exemplar"/>
+  </div>
+</div>
+
+<div class="section" id="portlet-max-window-state">
+  <div class="col">
+    <h3>Maximized window state</h3>
+    <p>Provide a full-screen-suitable experience in MAXIMIZED window state.</p>
+    <p>But bear in mind that you might be maximized on a mobile device screen, so don't needlessly add cruft to your UI.  Maximized is everything, but everything need not be any more than it needs to be.</p>
+  </div>
+  <div class="col">
+    <img src="http://placehold.it/500x500&text=Screenshot+of+exemplar"/>
+  </div>
+</div>
+
+<div class="section" id="portlet-min-window-state">
+  <div class="col">
+    <h3>Minimized window state</h3>
+    <p>Your portlet probably has nothing to say in minimized window state.  If so, great, render no markup.</p>
+    <p>But bear in mind that minimized window state can have nonzero content, and if you can pare your markup down to that one essential indicator, great, render that.  This technique can allow your users to minimize your portlet to reserve space and attention for more pressing things, and yet to become aware when your system's state changes such that they ought to engage with your portlet.</p>
+  </div>
+  <div class="col">
+    <img src="http://placehold.it/500x100&text=Minimized+markup"/>
+  </div>
+</div>
+
+<div class="section" id="portlet-help-mode">
+  <div class="col">
+    <h3>Help mode</h3>
+    <p>Besides the VIEW mode, portlets can have HELP mode.  Your portlet should.</p>
+    <p>In HELP mode your portlet might present static documentation, present links to external documentation.  But your portlet is uniquely well positioned to present <strong>contextualized</strong> help that's aware of the user and the user's state in your system.  Take the opportunity to HELP mode to implement that, the kind of help that an external knowledgebase isn't positioned to provide.</p>
+  </div>
+  <div class="col">
+    <img src="http://placehold.it/400x300&text=Help+mode+example"/>
+  </div>
+</div>
+
+<div class="section" id="portlet-edit-mode">
+  <div class="col">
+    <h3>Edit mode</h3>
+    <p>Besides the VIEW and HELP modes, portlets can support EDIT mode.</p>
+    <p>In EDIT mode your portlet affords the user the opportunity to edit preferences and settings for your portlet.  They are editing <strong>their experience of your portlet</strong>.</p>
+    <p>You should reserve EDIT mode for this purpose because EDIT mode will have special navigation considerations in the portal, typically available via chrome rendered by the portal.</p>
+    <p>You shouldn't use EDIT mode to model editing things other than your portlet.  For instance, your portlet might be about managing email lists.  A privileged user might very well navigate in your portlet to a particular email list and edit that email list.  That's still VIEW mode.  Such a portlet might model what email lists are a user's favorites that they want quick access to in the portlet and might provide an EDIT mode for users to set that preference.</p>
+    <p>If there's nothing about your portlet a user needs to edit, you needn't implement an EDIT mode.</p>
+    <p>EDIT mode should be scoped to that user's usage of the portlet (preferably, to that portlet subscription rather than to that user).</p>
+  </div>
+  <div class="col">
+    <img src="http://placehold.it/400x300&text=Edit+mode+example"/>
+  </div>
+</div>
+
+<div class="section" id="portlet-config-mode">
+  <div class="col">
+    <h3>Config mode</h3>
+    <p>Besides the VIEW, HELP, and EDIT modes, portlets can support CONFIG mode.</p>
+    <p>In CONFIG mode your portlet affords administrators the opportunity to edit settings and default preferences for your portlet.</p>
+    <p>Changes made via CONFIG mode must be scoped to the portlet publication (not to the portlet subscription).</p>
+    <p>If there's nothing about your portlet an administrator needs to configure, you needn't implement a CONFIG mode.</p>
+  </div>
+  <div class="col">
+    <img src="http://placehold.it/400x300&text=Config+mode+example"/>
+  </div>
+</div>
+
+<div class="section" id="portlet-render-vs-action">
+  <div class="col">
+    <h3>Render vs Action</h3>
+    <p>The portlet rendering lifecycle is more complicated than what you may be used to in other Web programming.  In particular, it differentiates rendering a portlet's state from changing its state via an action.</p>
+    <p>Your portlet's UI should correctly differentiate ACTION URLs from RENDER URLs, using ACTION URLs when the user is taking action that changes the state of your portlet and using RENDER URLs when the user is only navigating existing state without changing it.</p>
+    <p>The portal may re-invoke your portlet's RENDER state as often as it likes and so your implementation of rendering must be free of side effects.  A given ACTION state will be invoked exactly once per user click on an actuating ACTION URL.</p>
+  </div>
+  <div class="col">
+    <p>If your portlet is handling credit card payments, you'd process a payment in an action phase and render the status of the user's account in a render phase.</p>
+    <p>The portal could re-run the render phase code as often as necessary -- there's no harm in re-computing the user's account status, and if there's an updated balance because of a transaction somewhere else, well, all to the better that the user might see that when refreshing the screen.</p>
+    <p>Refreshing the screen shouldn't, however, re-run a credit card payment.</p>
+  </div>
+</div>
+
+<div class="section" id="portlet-caching">
+  <div class="col">
+    <h3>Participating in caching</h3>
+    <p>The portal can cache the output from portlet rendering and re-use that cached output when appropriate.</p>
+    <p>Your portlet can take care to provide the appropriate indicators to the portal on what caching is appropriate.</p>
+    <p>Of course, there can be a significiant performance gain from cross-user cache hits.</p>
+  </div>
+  <div class="col">
+    <p>TODO: explain this further with examples.</p>
+  </div>
+</div>
+
+<div class="heading" id="uportlet">
+  <h3>Being a Portlet in uPortal</h3>
+</div>
+
+<div class="section" id="uportlet-uportal-styles">
+  <div class="col">
+    <h3>Don't use uportal styles</h3>
+    <p>The uPortal <strong>framework</strong> happens to typically have some CSS styles present for rendering the framework, in its skin.  <strong>Don't use them.</strong>   You are writing a portlet, not the portal, and so should use styles specified by the JSR-286 specification or provided in Bootstrap.  There will be exceptions to this where framework-provided styles are designed and intended for your portlet's use, as a common workaround to the anemic styles available in the JSR-286 specification, but this is the exception rather than the rule and your portlet should prefer non-portal-specific styling.</p>
+  </div>
+  <div class="col">
+    <p>TODO: explain this further with examples.</p>
+  </div>
+</div>
+
+<div class="section" id="uportlet-resource-server">
+  <div class="col">
+    <h3>Use the Resource Server taglib</h3>
+    <p>uPortal provides a Resource Serving Webapp and a JSP taglib as an API for using it. This allows portlets to share markup dependencies in a way that optimizes minification and caching while minimizing conflict.  The taglib also implements a clever fallback mechanism such that portlets written to use it can still operate in non-uPortal environments that do not provide the Resource Serving Webapp.</p>
+  </div>
+  <div class="col">
+    <p>TODO: explain this further with examples.</p>
+  </div>
+</div>
+
+<div class="section" id="uportlet-entity-files">
+  <div class="col">
+    <h3>Entity files</h3>
+    <p>A portlet is a web application, but it's also the publication of that web application into a portal.  uPortal models portlet publications using portlet publication entity files.</p>
+    <p>Your portlet should include an example viable entity file for publishing it.</p>
+    <p>Among other things, a portlet publication entity file specifies the <strong>functional name aka fname</strong> of a portlet publication</p>
+    <p>Your portlet application can be multiply published and should be written to cope with multiple publications of the portlet application existing side-by-side in the portal.</p>
+  </div>
+  <div class="col">
+    <p>TODO: explain this further with examples.</p>
+  </div>
+</div>
+
+
+<div class="heading" id="markup">
+  <h3>Markup and CSS</h3>
+</div>
+
+<div class="section" id="markup-JSR-286">
+  <div class="col">
+    <h3>Use JSR-286 CSS where you can</h3>
+    <p>While the JSR-286 CSS is painfully anemic, it does provide some basic styles, and often your portlet will be providing a reasonably basic UI, and so these styles will sometimes be sufficient.  The standard JSR-286 styles have the advantage of being implemented in all supporting portals, and so a portlet that uses these styles will more readily drop into a novel portal environment.</p>
+  </div>
+  <div class="col">
+    <ul>
+      <li>TODO: provide some examples</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section" id="markup-bootstrap">
+  <div class="col">
+    <h3>Use Bootstrap 3</h3>
+    <p>In our portal, we've decided to make Bootstrap 3 styles available, and so your portlet should feel free to use them.  These styles will be skinned appropriately.  This is a readily achievable way to make your portlet more attractive.</p>
+  </div>
+  <div class="col">
+    <ul>
+      <li>TODO: provide some examples</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section" id="markup-imports">
+  <div class="col">
+    <h3>Provide your custom styles</h3>
+    <p>To the extent that your portlet uses styles not provided in JSR-286 or in Bootstrap 3, your portlet will need to provide those styles.  The framework will not provide them for you and your portlet should not require modifications to the framework-level skin and styles.</p>
+  </div>
+  <div class="col">
+    <ul>
+      <li>TODO: provide some examples</li>
+    </ul>
+  </div>
+</div>
+
+
+<div class="heading" id="javascript">
+  <h3>JavaScript</h3>
+</div>
+
+<div class="section">
+
+  <div class="col">
+  <p>TODO: say something intelligent about JavaScript in the context of portlets.</p>
+</div>
+</div>
+
+<div class="heading">
+  <h2>Be kind to the users</h2>
+</div>
+
+<div class="heading" id="ui">
+  <h3>UI Conventions</h3>
+</div>
+
+<div class="section" id="ui-return">
+  <div class="col">
+    <h3>Returning</h3>
+    <p>Users may drill down into your portlet, switching into EDIT or HELP mode, or navigating within your portlet to look at the details pane associated with an object, say.</p>
+      <p>They need to be able to get back out of this drilldown to their previous view on your portlet.</p>
+      <p>TODO: provide advice on how to do this</p>
+  </div>
+  <div class="col">
+<img src="http://placehold.it/400x300&text=Returning+from+edit+mode+example"/>
+<img src="http://placehold.it/400x300&text=Returning+from+drill-down+example"/>
+  </div>
+</div>
+
+
+<div class="section" id="ui-inline-help">
+  <div class="col">
+    <h3>Inline help</h3>
+    <ul>
+      <li>Inline help is, well, helpful.  So your portlet should have it.</li>
+    </ul>
+  </div>
+  <div class="col">
+    <img src="http://placehold.it/400x300&text=Inline+Help+Example"/>
+  </div>
+</div>
+
+
+<div class="section" id="ui-something-happened">
+  <div class="col">
+    <h3>Something happened!</h3>
+    <p>Things happen.  Sometimes, Things Happen!  The user needs to know about it, and your portlet ought to tell them.  Here's how.</p>
+  </div>
+  <div class="col">
+    <ul>
+      <li>TODO: provide some examples of feedback to the user, noty or otherwise.</li>
+    </ul>
+    <img src="http://placehold.it/400x300&text=UI+Notification+example"/>
+  </div>
+</div>
+
+<div class="section" id="ui-required-fields">
+  <div class="col">
+    <h3>Marking form fields required</h3>
+    <p>If all form fields are required, say so.</p>
+    <p>If most are optional but a few are required, mark the required fields required.</p>
+    <p>If most fields are required but a few are optional, mark the optional fields optional.</p>
+    <p>Consider adjusting the UI so that the required fields are visually separated from the optional or even so that the optional fields are only included in the form if the user adds them.</p>
+  </div>
+  <div class="col">
+    <img src="http://placehold.it/400x300&text=All+fields+required+example"/>
+    <img src="http://placehold.it/400x300&text=Few+fields+required+example"/>
+    <img src="http://placehold.it/400x300&text=Most+fields+required+example"/>
+    <img src="http://placehold.it/400x300&text=Separating+example"/>
+  </div>
+</div>
+
+<div class="section" id="ui-data-table">
+  <div class="col">
+    <h3>Presenting tables of data</h3>
+    <p>TODO: considerations for styling data tables.</p>
+  </div>
+  <div class="col">
+    <img src="http://placehold.it/400x300&text=Data+tables+example"/>
+  </div>
+</div>
+
+<div class="section" id="ui-carousel-alternative">
+  <div class="col">
+    <h3>Avoid Bootstrap Carousel</h3>
+    <p>Instead of using Carousel, do this other thing to present a gallery of images.</p>
+    <p>TODO: come up with the alternative, and document it.</p>
+  </div>
+  <div class="col">
+    <img src="http://placehold.it/400x300&text=Carousel+alternative"/>
+  </div>
+</div>
+
+<div class="heading" id="voice">
+  <h3>Voice</h3>
+</div>
+
+<div class="section" id="voice-overview">
+  <div class="col">
+    <h3>The My UW-Madison Voice</h3>
+    <p>Your portlet is representing the institution and should speak in the instutional voice, localized to the portal, and further localized to whatever your portlet is doing.</p>
+    <p>The institutional voice is described in the institutional branding guidelines, with <a href="http://www.uc.wisc.edu/brand/points-of-pride.php">these brand words</a>:</p>
+    <ul>
+      <li>Intelligent</li>
+      <li>Spirited</li>
+      <li>Engaging</li>
+      <li>Beautiful</li>
+      <li>Friendly</li>
+      <li>Midwestern</li>
+      <li>Comprehensive</li>
+      <li>Big</li>
+      <li>Progressive</li>
+    </ul>
+    <p>Localizing from there, the My UW-Madison voice is:</p>
+    <dl>
+      <dt>Friendly</dt>
+      <dd>Of all the University's brand words, <strong>friendly</strong> is perhaps the most applicable.  The portal is a service delivery platform, part of its purpose is to make navigating University services more approachable, friendly, and usable.</dd>
+      <dt>Concise</dt>
+      <dd>This is a portal, designed for small applications and optimizing towards a mobile-first experience.  We're delivering quick hits and self-service functionality.  Link out elsewhere for fuller descriptions of policy and whole websites.  That said, the voice should not be so concise as to be unusable.  Say what needs saying and no more.</dd>
+      <dt>Supportive</dt>
+      <dd>MyUW is the unified platform to help everyone at the University work smarter, faster, and safer. Our mission is to help, to support, to facilitate.  This means error messages should be as clear and helpful as we can make them, it should always be clear how to get support.</dd>
+      <dt>Personal</dt>
+      <dd>The user is "you" and the portal and its components are "yours".  Your favorites.  Your W2s.  Your bookmarks.  Your preferences.</dd>
+    </dl>
+      <dt>Open</dt>
+      <dd>MyUW is built on and has a practice of participating directly in open source software development, is built through relatively open processes and workflows, and user feedback is absolutely essential to our succeeding in building the best MyUW we can build.  Feedback and participation is always welcome.</dd>
+  </div>
+  <div class="col">
+    <blockquote>
+      You are the center of the (UW-Madison) universe.
+    </blockquote>
+    <p>- <a href="http://redesign.my.wisc.edu/features/">redesign website</a></p>
+    <p>TODO: voice examples</p>
+  </div>
+</div>
+
+<div class="section" id="voice-active">
+  <div class="col">
+    <h3>Prefer the active voice</h3>
+    <p>Prefer active voice.</p>
+  </div>
+  <div class="col">
+    <p>TODO: examples</p>
+  </div>
+</div>
+
+<div class="section" id="voice-spirited">
+  <div class="col">
+    <h3>Say it with panache</h3>
+    <p>Be spirited.  Say it with panache.</p>
+  </div>
+  <div class="col">
+    <p>TODO: examples</p>
+  </div>
+</div>
+
+<div class="section" id="voice-glossary">
+  <div class="col">
+    <h3>Glossary</h3>
+    <p>There are some terms specific to our portal.</p>
+  </div>
+  <div class="col">
+    <dl>
+      <dt>App</dt>
+      <dd>We call portlets Apps.  The term &quot;portlet&quot; should never appear in a user-facing UI.  We treat App as a proper noun.</dd>
+      <dt>Collection</dt>
+      <dd>Collections are renderable groupings of Apps.  Users will be able to navigate the Marketplace to pick out Collections they would like to favorite.  We treat Collection as a proper noun.</dd>
+      <dt>favorites</dd>
+      <dd>Users can favorite Apps and Collections.  They can also un-favorite them.  The user's favorites appear in the Favorites App.</dd>
+      <dt>Favorites App</dt>
+      <dd>Displays the user's favorites.</dd>
+      <dt>Marketplace</dt>
+      <dd>Users can browse and search the Marketplace to discover, favorite, or launch Apps and Collections.</dd>
+    </dl>
+  </div>
+</div>
+
+<div class="heading">
+  <h2>Be kind to your fellow developers and the portal community</h2>
+</div>
+
+<div class="heading" id="product">
+  <h3>Portlet as Product</h3>
+</div>
+
+<div class="section" id="product-or-not">
+  <div class="col">
+    <h3>Are you building a product or a one-off?</h3>
+    <p>Are you building an open source product of which the University is your favorite adopter, or are you building a one-off local thing?</p>
+    <p>There are pros and cons to this decision, and it may evolve in the face of emerging reality.</p>
+    <p>Experience suggests, however, that code is maintained longer than we'd expect, that other Universities are solving similar problems with their portals, and that more eyes and hands make for better and more sustainable code. There's virtue in scoping, birthing, and benefiting from collaborating on open source software products.</p>
+  </div>
+  <div class="col">
+    <p>TODO: considerations for figuring out whether a given portlet is an open source product or just some local bit of code.</p>
+  </div>
+</div>
+
+<div class="section" id="product-maven-overlayability">
+  <div class="col">
+    <h3>Maven Overlays</h3>
+    <p>How are adopters intended to adopt and customize the product?</p>
+  </div>
+  <div class="col">
+    <p>One way to facilitate this is by engineering your portlet to be adoptable via a local Maven overlay containing only the configuration unique to the adopter's usage of the portlet.</p>
+  </div>
+</div>
