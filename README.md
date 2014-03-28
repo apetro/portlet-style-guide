@@ -35,6 +35,19 @@ Current vision is to have complementary `portlet-style-guide` and `portal-style-
 The `portal-style-guide` would include by reference the `portlet-style-guide` and then work from there advising about what's special about developing in the portal infrastructure.
 
 
+Implementation Notes
+=====================
+
+* HTML source in GitHub repository
+* Generate website via Jekyll
+* Website hosting via GitHub pages
+* Since it's Git / GitHub driven, Pull Requests and change management are a win.
+
+TODO:
+* Factor out content into multiple files rather than one giant `index.html` file.
+* Use `Markdown` rather than `HTML` for some of the content where appropriate.
+* Demonstrate highlighted source code example inclusions (which should be eminently feasible since the `Code Guide` that inspired this demonstrates doing that).
+
 Acknowledgements
 =================
 
